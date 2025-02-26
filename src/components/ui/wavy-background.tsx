@@ -24,17 +24,16 @@ export const WavyBackground = ({
     blur?: number;
     speed?: "slow" | "fast";
     waveOpacity?: number;
-    [key: string]: any;
+    [key: string]: unknown; // ✅ Fixed `any` issue
 }) => {
     const noise = createNoise3D();
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const animationRef = useRef<number | null>(null);
     const [isSafari, setIsSafari] = useState(false);
 
-    // Get animation speed based on prop
-    const getSpeed = () => (speed === "fast" ? 0.002 : 0.001);
+    // ✅ Wrap `getSpeed` inside `useCallback` for dependency stability
+    const getSpeed = useCallback(() => (speed === "fast" ? 0.002 : 0.001), [speed]);
 
-    // Default wave colors
     const waveColors = colors ?? [
         "#38bdf8",
         "#818cf8",
@@ -43,7 +42,7 @@ export const WavyBackground = ({
         "#22d3ee",
     ];
 
-    // Function to initialize canvas and animation
+    // ✅ `useCallback` now correctly includes `getSpeed`
     const init = useCallback(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -91,9 +90,8 @@ export const WavyBackground = ({
             window.removeEventListener("resize", resizeCanvas);
             if (animationRef.current) cancelAnimationFrame(animationRef.current);
         };
-    }, [backgroundFill, blur, waveOpacity, waveWidth, waveColors, noise, speed]);
+    }, [backgroundFill, blur, waveOpacity, waveWidth, waveColors, noise, getSpeed]); // ✅ `getSpeed` is now included
 
-    // Initialize animation
     useEffect(() => {
         const cleanup = init();
         return () => {
@@ -101,7 +99,6 @@ export const WavyBackground = ({
         };
     }, [init]);
 
-    // Detect Safari
     useEffect(() => {
         setIsSafari(
             typeof window !== "undefined" &&

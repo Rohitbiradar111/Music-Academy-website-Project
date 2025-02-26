@@ -23,6 +23,29 @@ export const InfiniteMovingCards = ({
     const scrollerRef = React.useRef<HTMLUListElement>(null);
     const [start, setStart] = useState(false);
 
+    const getDirection = useCallback(() => {
+        if (containerRef.current) {
+            containerRef.current.style.setProperty(
+                "--animation-direction",
+                direction === "left" ? "forwards" : "reverse"
+            );
+        }
+    }, [direction]);
+
+    const getSpeed = useCallback(() => {
+        if (containerRef.current) {
+            const speedMap = {
+                fast: "20s",
+                normal: "40s",
+                slow: "80s",
+            };
+            containerRef.current.style.setProperty(
+                "--animation-duration",
+                speedMap[speed]
+            );
+        }
+    }, [speed]);
+
     const addAnimation = useCallback(() => {
         if (containerRef.current && scrollerRef.current) {
             const scrollerContent = Array.from(scrollerRef.current.children);
@@ -36,34 +59,11 @@ export const InfiniteMovingCards = ({
             getSpeed();
             setStart(true);
         }
-    }, []); // No dependencies needed
+    }, [getDirection, getSpeed]); // ✅ Now correctly includes dependencies
 
     useEffect(() => {
         addAnimation();
     }, [addAnimation]);
-
-    const getDirection = () => {
-        if (containerRef.current) {
-            containerRef.current.style.setProperty(
-                "--animation-direction",
-                direction === "left" ? "forwards" : "reverse"
-            );
-        }
-    };
-
-    const getSpeed = () => {
-        if (containerRef.current) {
-            const speedMap = {
-                fast: "20s",
-                normal: "40s",
-                slow: "80s",
-            };
-            containerRef.current.style.setProperty(
-                "--animation-duration",
-                speedMap[speed]
-            );
-        }
-    };
 
     return (
         <div

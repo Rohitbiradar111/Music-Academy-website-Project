@@ -50,7 +50,6 @@ function AllCourses() {
                                 <CardItem
                                     translateZ={20}
                                     as={Link}
-                                    href="#"
                                     className="px-4 py-2 cursor-pointer rounded-xl text-base font-normal dark:text-white"
                                 >
                                     Try now →

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -16,9 +16,9 @@ export const StickyScroll = ({
     contentClassName?: string;
 }) => {
     const [activeCard, setActiveCard] = useState(0);
-    const ref = useRef<HTMLDivElement | null>(null); // ✅ Fixed: Explicitly typed ref
+    const ref = useRef<HTMLDivElement | null>(null);
     const { scrollYProgress } = useScroll({
-        container: ref, // ✅ Uses container instead of entire page
+        container: ref,
         offset: ["start start", "end start"],
     });
     const cardLength = content.length;
@@ -35,22 +35,25 @@ export const StickyScroll = ({
         setActiveCard(closestBreakpointIndex);
     });
 
-    const backgroundColors = [
-        "var(--slate-900)",
-        "var(--black)",
-        "var(--neutral-900)",
-    ];
-    const linearGradients = [
-        "linear-gradient(to bottom right, var(--cyan-500), var(--emerald-500))",
-        "linear-gradient(to bottom right, var(--pink-500), var(--indigo-500))",
-        "linear-gradient(to bottom right, var(--orange-500), var(--yellow-500))",
-    ];
+    const backgroundColors = useMemo(
+        () => ["var(--slate-900)", "var(--black)", "var(--neutral-900)"],
+        []
+    );
+
+    const linearGradients = useMemo(
+        () => [
+            "linear-gradient(to bottom right, var(--cyan-500), var(--emerald-500))",
+            "linear-gradient(to bottom right, var(--pink-500), var(--indigo-500))",
+            "linear-gradient(to bottom right, var(--orange-500), var(--yellow-500))",
+        ],
+        []
+    );
 
     const [backgroundGradient, setBackgroundGradient] = useState(linearGradients[0]);
 
     useEffect(() => {
         setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-    }, [activeCard, linearGradients]); // ✅ Fixed: Added `linearGradients` to dependency array
+    }, [activeCard, linearGradients]); // ✅ Fixed: No more re-creation of linearGradients
 
     return (
         <motion.div
