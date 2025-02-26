@@ -7,6 +7,7 @@
 <h2>💻 Technologies</h2>
 
 - Next JS
+- TypeScript
 - Aceternity UI
 
 <h2>📫 Contribute</h2>
