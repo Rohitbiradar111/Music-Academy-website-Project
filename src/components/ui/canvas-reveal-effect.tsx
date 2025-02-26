@@ -128,7 +128,7 @@ const ShaderMaterial = ({
     uniforms,
 }: {
     source: string;
-    uniforms: { [key: string]: { value: any; type: string } };
+    uniforms: { [key: string]: { value: unknown; type: string } };
 }) => {
     const { size } = useThree();
     const ref = useRef<THREE.Mesh>(null);
@@ -177,7 +177,9 @@ const ShaderMaterial = ({
     );
 };
 
-const Shader = ({ source, uniforms }: { source: string; uniforms: any }) => {
+const Shader = ({ source, uniforms, }: {
+    source: string; uniforms: { [key: string]: { value: unknown; type: string } };
+}) => {
     return (
         <Canvas className="absolute inset-0 h-full w-full">
             <ShaderMaterial source={source} uniforms={uniforms} />

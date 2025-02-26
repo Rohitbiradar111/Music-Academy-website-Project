@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { createNoise3D } from "simplex-noise";
 
 export const WavyBackground = ({
@@ -34,13 +34,10 @@ export const WavyBackground = ({
     // ✅ Wrap `getSpeed` inside `useCallback` for dependency stability
     const getSpeed = useCallback(() => (speed === "fast" ? 0.002 : 0.001), [speed]);
 
-    const waveColors = colors ?? [
-        "#38bdf8",
-        "#818cf8",
-        "#c084fc",
-        "#e879f9",
-        "#22d3ee",
-    ];
+    const waveColors = useMemo(
+        () => colors ?? ["#38bdf8", "#818cf8", "#c084fc", "#e879f9", "#22d3ee"],
+        [colors]
+    );
 
     // ✅ `useCallback` now correctly includes `getSpeed`
     const init = useCallback(() => {
