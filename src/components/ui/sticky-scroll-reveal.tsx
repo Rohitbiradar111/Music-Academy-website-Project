@@ -11,16 +11,14 @@ export const StickyScroll = ({
     content: {
         title: string;
         description: string;
-        content?: React.ReactNode | any;
+        content?: React.ReactNode;
     }[];
     contentClassName?: string;
 }) => {
-    const [activeCard, setActiveCard] = React.useState(0);
-    const ref = useRef<any>(null);
+    const [activeCard, setActiveCard] = useState(0);
+    const ref = useRef<HTMLDivElement | null>(null); // ✅ Fixed: Explicitly typed ref
     const { scrollYProgress } = useScroll({
-        // uncomment line 22 and comment line 23 if you DONT want the overflow container and want to have it change on the entire page scroll
-        // target: ref
-        container: ref,
+        container: ref, // ✅ Uses container instead of entire page
         offset: ["start start", "end start"],
     });
     const cardLength = content.length;
@@ -30,10 +28,7 @@ export const StickyScroll = ({
         const closestBreakpointIndex = cardsBreakpoints.reduce(
             (acc, breakpoint, index) => {
                 const distance = Math.abs(latest - breakpoint);
-                if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
-                    return index;
-                }
-                return acc;
+                return distance < Math.abs(latest - cardsBreakpoints[acc]) ? index : acc;
             },
             0
         );
@@ -51,13 +46,11 @@ export const StickyScroll = ({
         "linear-gradient(to bottom right, var(--orange-500), var(--yellow-500))",
     ];
 
-    const [backgroundGradient, setBackgroundGradient] = useState(
-        linearGradients[0]
-    );
+    const [backgroundGradient, setBackgroundGradient] = useState(linearGradients[0]);
 
     useEffect(() => {
         setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-    }, [activeCard]);
+    }, [activeCard, linearGradients]); // ✅ Fixed: Added `linearGradients` to dependency array
 
     return (
         <motion.div
@@ -67,29 +60,21 @@ export const StickyScroll = ({
             className="h-[30rem] overflow-y-auto flex justify-center relative space-x-10 rounded-md p-10"
             ref={ref}
         >
-            <div className="div relative flex items-start px-4">
+            <div className="relative flex items-start px-4">
                 <div className="max-w-2xl">
                     {content.map((item, index) => (
                         <div key={item.title + index} className="my-20">
                             <motion.h2
-                                initial={{
-                                    opacity: 0,
-                                }}
-                                animate={{
-                                    opacity: activeCard === index ? 1 : 0.3,
-                                }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: activeCard === index ? 1 : 0.3 }}
                                 className="text-2xl font-bold text-slate-100"
                             >
                                 {item.title}
                             </motion.h2>
                             <motion.p
-                                initial={{
-                                    opacity: 0,
-                                }}
-                                animate={{
-                                    opacity: activeCard === index ? 1 : 0.3,
-                                }}
-                                className="text-kg text-slate-300 max-w-sm mt-10"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: activeCard === index ? 1 : 0.3 }}
+                                className="text-lg text-slate-300 max-w-sm mt-10"
                             >
                                 {item.description}
                             </motion.p>
