@@ -1,4 +1,18 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center" style="font-weight: bold;">Music Academy Website</h1>
+
+<p align="center">
+<a href="https://music-academy-website-project.vercel.app/" target="_blank">📱 Visit this Project</a>
+</p>
+
+<h2>💻 Technologies</h2>
+
+- Next JS
+- TypeScript
+- Aceternity UI
+
+<h2>📫 Contribute</h2>
+
+Contributions are always welcomed. Feel free to raise issues or send in pull requests.
 
 ## Getting Started
 
