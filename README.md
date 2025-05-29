@@ -1,50 +1,83 @@
-<h1 align="center" style="font-weight: bold;">Music Academy Website</h1>
+<div align="center">
+  <div>
+    <a href="https://music-academy-website-project.vercel.app/" target="_blank">
+      <img src="https://github.com/user-attachments/assets/1f1d63e6-b3e4-4225-acc5-d78344e5c584" alt="Project Image">
+    </a>
+  </div>
+  <h1 align="center">Music Academy Website Project</h1>
+</div>
 
-<p align="center">
-<a href="https://music-academy-website-project.vercel.app/" target="_blank">📱 Visit this Project</a>
-</p>
+## 📋 <a name="table">Table of Contents</a>
 
-<h2>💻 Technologies</h2>
+1. 💡 [Overview](#overview)
+2. 👩‍💻 [Tech Stack](#tech-stack)
+3. 📦 [Getting Started](#getting-started)
+4. 📖 [Documentation](#documentation)
+5. 📫 [Contribute](#contribute)
+6. 🐛 [Issues](#issues)
 
-- Next JS
+## <a name="overview">💡 Overview</a>
+
+This is a Music Academy Website Project built to learn Next.js.
+
+## <a name="tech-stack">👩‍💻 Tech Stack</a>
+
+- Next.js
 - TypeScript
 - Aceternity UI
 
-<h2>📫 Contribute</h2>
+## <a name="getting-started">📦 Getting Started</a>
 
-Contributions are always welcomed. Feel free to raise issues or send in pull requests.
+Follow these steps to set up the project locally on your machine.
 
-## Getting Started
-
-First, run the development server:
+**clone the repository**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Rohitbiradar111/Music-Academy-website-Project.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Install dependencies**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Start the server**
 
-## Learn More
+```bash
+  npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## <a name="documentation">📖 Documentation</a>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+[Next.js](https://nextjs.org/)
 
-## Deploy on Vercel
+[Aceternity UI](https://ui.aceternity.com/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[TypeScript](https://www.typescriptlang.org/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## <a name="contribute">📫 Contribute</a>
+
+Contributions are always welcome. Please follow these steps to contribute:
+
+1. **Fork the repository.**
+2. **Create a new branch** (`git checkout -b feature/your-feature-name`).
+3. **Make your changes** and commit them (`git commit -m 'Add some feature'`).
+4. **Push to the branch** (`git push origin feature/your-feature-name`).
+5. **Open a pull request**.
+
+Please make sure to update tests as appropriate.
+
+## <a name="issues">🐛 Issues</a>
+
+If you encounter any issues while using or setting up the project, please check the issues section to see if it has already been reported. If not, feel free to open a new issue detailing the problem.
+
+When reporting an issue, please include:
+
+- A clear and descriptive title.
+- A detailed description of the problem.
+- Steps to reproduce the issue.
+- Any relevant logs or screenshots.
+- The environment in which the issue occurs (OS, browser, Node.js version, etc.).
